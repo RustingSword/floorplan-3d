@@ -1,51 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <title>Chengdu Apartment — Walkable 3D</title>
-  <link rel="stylesheet" href="./assets/css/style.css" />
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "./assets/vendor/three.module.js",
-      "three/addons/": "./assets/vendor/examples/jsm/"
-    }
-  }
-  </script>
-</head>
-<body>
-  <div id="app">
-    <canvas id="c"></canvas>
-    <div id="minimap">
-      <img id="minimap-img" src="./assets/floorplan.jpg" alt="floorplan" />
-      <div id="minimap-dot"></div>
-    </div>
-    <div id="hud">
-      <button id="btn-tour" type="button">Auto Tour</button>
-      <button id="btn-lock" type="button">Click to Walk</button>
-      <span id="hint">WASD move · mouse look · Esc unlock</span>
-    </div>
-    <div id="mobile-controls" class="hidden">
-      <div id="joystick"><div id="joystick-knob"></div></div>
-      <div id="look-pad"></div>
-    </div>
-    <div id="blocker">
-      <div id="blocker-inner">
-        <h1>Chengdu 4-Bed Apartment</h1>
-        <p>Walk the marble living room, wood bedrooms, kitchen &amp; balconies.</p>
-        <button id="btn-start" type="button">Enter</button>
-        <p class="small">Desktop: click + WASD · Mobile: joystick + drag</p>
-      </div>
-    </div>
-  </div>
-  <script>
-    // Hide Enter overlay immediately for auto-tour (before module loads)
-    if (new URLSearchParams(location.search).get('tour') === '1') {
-      var b = document.getElementById('blocker');
-      if (b) { b.classList.add('hidden'); b.style.display = 'none'; }
-    }
-  </script>
-  <script type="module" src="./assets/js/main.js"></script>
-</body>
-</html>
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>户型漫游 · 四室两厅</title>
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#111;font-family:-apple-system,"PingFang SC",sans-serif;touch-action:none}
+canvas{display:block}
+#mini{position:fixed;left:12px;top:12px;width:min(30vw,280px);border-radius:8px;overflow:hidden;box-shadow:0 4px 18px #0007;background:#fff;opacity:.93}
+#mini img{display:block;width:100%}
+#dot{position:absolute;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#e8452c;border:2px solid #fff;box-sizing:border-box}
+#cone{position:absolute;width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:22px solid #e8452c88;transform-origin:50% 100%;margin:-22px 0 0 -9px}
+#hud{position:fixed;right:12px;top:12px;display:flex;gap:8px}
+button{font:inherit;font-size:14px;padding:8px 14px;border:0;border-radius:6px;background:#000a;color:#fff;cursor:pointer}
+#start{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000b;color:#eee;text-align:center;gap:12px}
+#start h1{margin:0;font-size:26px}#start p{margin:0;opacity:.8;font-size:14px}
+#start button{background:#c9a46a;color:#222;font-size:16px;padding:10px 26px}
+#joy{position:fixed;left:24px;bottom:24px;width:120px;height:120px;border-radius:50%;background:#fff2;border:2px solid #fff5;display:none}
+#knob{position:absolute;left:40px;top:40px;width:40px;height:40px;border-radius:50%;background:#fff9}
+#loading{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);color:#fff;font-size:13px;opacity:.8}
+.hide{display:none!important}
+</style>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/jsm/"}}</script>
+</head><body>
+<div id="mini"><img src="minimap.jpg" alt="户型图"><div id="cone"></div><div id="dot"></div></div>
+<div id="hud"><button id="tourBtn">自动漫游</button></div>
+<div id="joy"><div id="knob"></div></div>
+<div id="start"><h1>四室两厅 · 3D 户型漫游</h1><p>按户型图尺寸 1:1 建模</p><p id="how">电脑：点击进入，WASD 走动、鼠标看；手机：左下摇杆走、右侧拖动看</p><div><button id="go">进入</button> <button id="go2">自动漫游</button></div></div>
+<div id="loading">加载中…</div>
+<script type="module" src="main.js"></script>
+</body></html>
