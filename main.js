@@ -442,8 +442,7 @@ addEventListener('touchmove', (e) => {
 addEventListener('touchend', (e) => { for (const t of e.changedTouches) { if (t.identifier === joy.id) { joy.id = null; joy.x = joy.y = 0; knob.style.transform = ''; } if (t.identifier === joy.look) joy.look = null; } });
 
 // ---------- tour
-const tourPx = [[1030, 772, 180], [900, 800, 200], [780, 820, 160], [640, 870, 120], [760, 790, 20], [700, 760, -60],
-  [660, 690, -90], [800, 715, -40], [880, 700, -60], [760, 770, 60], [560, 770, 180], [500, 870, 110], [470, 1010, 140], [560, 770, 0], [380, 770, 180], [330, 790, 120], [300, 1000, 150], [330, 790, -30], [600, 770, 0], [1020, 790, 10], [1060, 880, 60], [1080, 1010, 120]];
+const tourPx = [[1030, 772], [900, 800], [790, 830], [650, 880], [700, 790], [780, 760], [880, 650], [800, 760], [560, 770], [500, 880], [480, 1000], [560, 770], [380, 770], [340, 880], [300, 1000], [330, 790], [600, 770], [1020, 790], [1070, 900], [1080, 1010]];
 const tourPts = tourPx.map(([x, y]) => { const [a, b] = px2m(x, y); return new THREE.Vector3(a, 0, b); });
 const tourCurve = new THREE.CatmullRomCurve3(tourPts, false, 'centripetal', 0.5);
 const tourLen = tourCurve.getLength();
