@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Chengdu Apartment — Walkable 3D</title>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./assets/vendor/three.module.js",
+      "three/addons/": "./assets/vendor/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <canvas id="c"></canvas>
+    <div id="minimap">
+      <img id="minimap-img" src="./assets/floorplan.jpg" alt="floorplan" />
+      <div id="minimap-dot"></div>
+    </div>
+    <div id="hud">
+      <button id="btn-tour" type="button">Auto Tour</button>
+      <button id="btn-lock" type="button">Click to Walk</button>
+      <span id="hint">WASD move · mouse look · Esc unlock</span>
+    </div>
+    <div id="mobile-controls" class="hidden">
+      <div id="joystick"><div id="joystick-knob"></div></div>
+      <div id="look-pad"></div>
+    </div>
+    <div id="blocker">
+      <div id="blocker-inner">
+        <h1>Chengdu 4-Bed Apartment</h1>
+        <p>Walk the marble living room, wood bedrooms, kitchen &amp; balconies.</p>
+        <button id="btn-start" type="button">Enter</button>
+        <p class="small">Desktop: click + WASD · Mobile: joystick + drag</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Hide Enter overlay immediately for auto-tour (before module loads)
+    if (new URLSearchParams(location.search).get('tour') === '1') {
+      var b = document.getElementById('blocker');
+      if (b) { b.classList.add('hidden'); b.style.display = 'none'; }
+    }
+  </script>
+  <script type="module" src="./assets/js/main.js"></script>
+</body>
+</html>
